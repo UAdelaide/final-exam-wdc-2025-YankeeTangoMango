@@ -11,6 +11,12 @@ body {
     animation: blink 0.5s step-end infinite;
 }
 
+button
+{
+    padding 2px;
+    
+}
+
 img {
     max-width: 100%;
     height: auto;
