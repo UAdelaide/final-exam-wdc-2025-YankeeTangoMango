@@ -21,6 +21,10 @@ body {
     animation: blink 0.5s step-end infinite;
 }
 
+@keyframes blink {
+  50% { visibility: hidden; }
+}
+
 button
 {
     padding: 2px;
