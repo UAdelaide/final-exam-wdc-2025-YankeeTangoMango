@@ -31,15 +31,16 @@
 
         <script>
         const { createPic } = Vue;
-        createApp({
-    data() { return { dog: { imageUrl: '' } }; },
-    created() {
-      fetch('https://dog.ceo/api/breeds/image/random')
-        .then(r => r.json())
-        .then(d => this.dog.imageUrl = d.message);
-    }
-  }).mount('#app');
-</script>
+        createPic({
+            data() { return { dog: { imageUrl: '' } }; },
+            created()
+            {
+            fetch('https://dog.ceo/api/breeds/image/random')
+                .then(r => r.json())
+                .then(d => this.dog.imageUrl = d.message);
+            }
+        }).mount('#app');
+        </script>
 
     </body>
 
