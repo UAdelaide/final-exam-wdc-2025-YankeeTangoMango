@@ -168,4 +168,36 @@ app.get('/api/walkrequests/open', async (req, res) => {
   }
 });
 
+app.get('/api/walkers/summary', async (req, res) => {
+  try {
+    const [rows] = await db.execute(
+      `SELECT u.username AS walker_username,
+              COALESCE(ratings.total_ratings, 0) AS total_ratings,
+              ratings.average_rating,
+              COALESCE(comp.completed_walks, 0) AS completed_walks
+       FROM Users u
+       LEFT JOIN (
+         SELECT walker_id,
+                COUNT(*) AS total_ratings,
+                ROUND(AVG(rating), 2) AS average_rating
+         FROM WalkRatings
+         GROUP BY walker_id
+       ) ratings ON ratings.walker_id = u.user_id
+       LEFT JOIN (
+         SELECT wa.walker_id,
+                COUNT(*) AS completed_walks
+         FROM WalkApplications wa
+         JOIN WalkRequests wr ON wa.request_id = wr.request_id
+         WHERE wa.status = 'accepted' AND wr.status = 'completed'
+         GROUP BY wa.walker_id
+       ) comp ON comp.walker_id = u.user_id
+       WHERE u.role = 'walker'`
+    );
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch walkers summary' });
+  }
+});
+
 module.exports = app;
