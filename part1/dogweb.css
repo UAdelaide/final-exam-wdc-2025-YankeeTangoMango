@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to left);
+    background: linear-gradient(to left, blue, purple);
     font-family: 'Times New Roman', Times, serif;
     margin: 0;
     padding: 0;
