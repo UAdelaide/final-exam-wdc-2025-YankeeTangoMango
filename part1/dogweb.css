@@ -8,7 +8,7 @@ body {
 
 .blinking
 {
-    animation
+    animation: blink 0.5s step-end infinite;
 }
 
 img {
