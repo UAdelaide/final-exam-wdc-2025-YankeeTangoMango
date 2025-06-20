@@ -90,6 +90,7 @@ let db;
       );
     `);
 
+    /*
     await db.execute(`
       CREATE TABLE IF NOT EXISTS WalkRatings (
         rating_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -104,10 +105,10 @@ let db;
         FOREIGN KEY (owner_id) REFERENCES Users(user_id),
         UNIQUE(request_id)
       );
-    `);
+    `); */
 
     // Insert data if table is empty
-
+    /*
     const [rows] = await db.execute('SELECT COUNT(*) AS count FROM Users');
     if (rows[0].count === 0) {
       await db.execute(`
@@ -150,6 +151,7 @@ let db;
         ((SELECT request_id FROM WalkRequests WHERE dog_id=(SELECT dog_id FROM Dogs WHERE name='Charlie')),(SELECT user_id FROM Users WHERE username='bobwalker'),   (SELECT user_id FROM Users WHERE username='carol123'),   5,'Excellent')
       `);
     } */
+
   } catch (err) {
     console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
   }
