@@ -107,6 +107,7 @@ let db;
     `);
 
     // Insert data if table is empty
+
     const [rows] = await db.execute('SELECT COUNT(*) AS count FROM Users');
     if (rows[0].count === 0) {
       await db.execute(`
@@ -148,7 +149,7 @@ let db;
         ((SELECT request_id FROM WalkRequests WHERE dog_id=(SELECT dog_id FROM Dogs WHERE name='Rex')),     (SELECT user_id FROM Users WHERE username='elviswalker'), (SELECT user_id FROM Users WHERE username='daveowner'), 4,'Great walk'),
         ((SELECT request_id FROM WalkRequests WHERE dog_id=(SELECT dog_id FROM Dogs WHERE name='Charlie')),(SELECT user_id FROM Users WHERE username='bobwalker'),   (SELECT user_id FROM Users WHERE username='carol123'),   5,'Excellent')
       `);
-    }
+    } */
   } catch (err) {
     console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
   }
