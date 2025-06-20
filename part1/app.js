@@ -118,7 +118,30 @@ let db;
         ('elviswalker','elvis@example.com','hashed202','walker')
       `);
 
-      
+      await db.execute(`
+        INSERT INTO Dogs (owner_id, name, size) VALUES
+        ((SELECT user_id FROM Users WHERE username='alice123'),'Max','medium'),
+        ((SELECT user_id FROM Users WHERE username='carol123'),'Bella','small'),
+        ((SELECT user_id FROM Users WHERE username='carol123'),'Charlie','medium'),
+        ((SELECT user_id FROM Users WHERE username='daveowner'),'Rex','large'),
+        ((SELECT user_id FROM Users WHERE username='alice123'),'Lucky','large')
+      `);
+
+      await db.execute(`
+        INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status) VALUES
+        ((SELECT dog_id FROM Dogs WHERE name='Max'),  '2025-06-10 08:00:00', 30, 'Parklands',       'open'),
+        ((SELECT dog_id FROM Dogs WHERE name='Bella'),'2025-06-10 09:30:00', 45, 'Beachside Ave',  'accepted'),
+        ((SELECT dog_id FROM Dogs WHERE name='Lucky'),'2025-06-11 07:00:00', 60, 'Downtown Plaza','open'),
+        ((SELECT dog_id FROM Dogs WHERE name='Rex'),  '2025-06-12 10:15:00', 30, 'Garden Ave',     'completed'),
+        ((SELECT dog_id FROM Dogs WHERE name='Charlie'),'2025-06-13 15:00:00', 30, 'Sunset Ave',     'completed')
+      `);
+
+      await db.execute(`
+        INSERT INTO WalkApplications (request_id, walker_id, status) VALUES
+        ((SELECT request_id FROM WalkRequests WHERE dog_id=(SELECT dog_id FROM Dogs WHERE name='Bella')),   (SELECT user_id FROM Users WHERE username='bobwalker'),   'accepted'),
+        ((SELECT request_id FROM WalkRequests WHERE dog_id=(SELECT dog_id FROM Dogs WHERE name='Rex')),     (SELECT user_id FROM Users WHERE username='elviswalker'),'accepted'),
+        ((SELECT request_id FROM WalkRequests WHERE dog_id=(SELECT dog_id FROM Dogs WHERE name='Charlie')), (SELECT user_id FROM Users WHERE username='bobwalker'),   'accepted')
+      `);
     }
   } catch (err) {
     console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
