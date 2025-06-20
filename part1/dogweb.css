@@ -6,6 +6,11 @@ body {
     text-align: center;
 }
 
+.blinking
+{
+    animation
+}
+
 img {
     max-width: 100%;
     height: auto;
