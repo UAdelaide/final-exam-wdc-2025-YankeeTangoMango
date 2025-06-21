@@ -111,7 +111,9 @@
           ? '/owner-dashboard.html'
           : '/walker-dashboard.html';
         }
-        catch 
+        catch (err) {
+          error.value = err.message;
+        }
       }
     }
 
