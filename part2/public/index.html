@@ -117,8 +117,11 @@
       }
 
       async function loadDogs() {
-        const res= await fetch
+        const res= await fetch('/api/dogs');
+        dogs.value = awaot res.json();
       }
+
+      async function
     }
 
   })
