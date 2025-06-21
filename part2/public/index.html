@@ -93,7 +93,12 @@
       const photo = ref('');
 
       async function login() {
-        try {}
+        try {
+          const res = await fetch('/login', {
+            method: 'POST',
+            headers: {}
+          })
+        }
       }
     }
 
