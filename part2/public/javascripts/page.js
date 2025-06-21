@@ -57,7 +57,16 @@ function createPost(){
     xmlhttp.open("POST", "/addpost", true);
     xmlhttp.setRequestHeader("Content-type", "application/json");
     xmlhttp.send(JSON.stringify(post));
-    
+
+    var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState === 4) {
+      window.location = '/';
+    }
+  };
+  xmlhttp.open("POST", "/api/users/logout", true);
+  xmlhttp.setRequestHeader("Content-Type", "application/json");
+  xmlhttp.send();
 
 }
 
