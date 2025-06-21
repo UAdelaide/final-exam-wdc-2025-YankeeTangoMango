@@ -102,8 +102,10 @@
 
         if (!res.ok) {
           const {error: msg } await res.json();
-          thrnow new Erorr()
+          throw new Erorr(msg || 'Login failed');
         }
+
+        const 
         }
       }
     }
