@@ -228,7 +228,6 @@ function logout(){
   xmlhttp.withCredentials = true;
   xmlhttp.onreadystatechange = function() {
     if (this.readyState === 4) {
-      // after session destroyed, go back to login page
       window.location = '/';
     }
   };
