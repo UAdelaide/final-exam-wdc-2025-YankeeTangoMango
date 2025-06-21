@@ -43,6 +43,8 @@ function createPost(){
     // Create AJAX Request
     var xmlhttp = new XMLHttpRequest();
 
+    xmlhttp.withCredentials = true;
+
     // Define function to run on response
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
