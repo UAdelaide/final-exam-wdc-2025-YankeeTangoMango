@@ -101,7 +101,7 @@
           });
 
         if (!res.ok) {
-          const { error: msg } await res.json();
+          const { error: msg } = await res.json();
           throw new Error(msg || 'Login failed');
         }
 
