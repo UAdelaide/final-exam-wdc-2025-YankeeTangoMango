@@ -76,7 +76,7 @@
     createApp({
       setup() {
 
-        //
+        //Logout
         async function logout() {
           const res = await fetch('/logout', { method: 'POST' });
           if (res.ok) {
@@ -136,6 +136,7 @@
         });
 
         return {
+          logout,
           form,
           walks,
           message,
