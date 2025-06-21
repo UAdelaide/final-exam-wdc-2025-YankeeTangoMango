@@ -18,6 +18,7 @@
     <a href="walker-dashboard.html" class="btn btn-outline-success">Walker Dashboard</a>
   </div> -->
 
+  <!--Login-->
   <div id="app" class="container py-5">
     <form @submit.prevent="login" class="w-50 mx-auto mb-4">
       <div class="mb-3">
@@ -45,6 +46,7 @@
       </button>
     </form>
 
+    
     <div v-if="error" class="alert alert-danger w-50 mx-auto">
       {{ error }}
     </div>
