@@ -102,10 +102,10 @@
 
         if (!res.ok) {
           const { error: msg } await res.json();
-          throw new Erorr(msg || 'Login failed');
+          throw new Error(msg || 'Login failed');
         }
 
-        const { role } = await res.json()label
+        const { role } = await res.json();
 
         window.location = role === 'owner'
           ? '/owner-dashboard.html'
