@@ -57,6 +57,7 @@ function createPost(){
     xmlhttp.open("POST", "/addpost", true);
     xmlhttp.setRequestHeader("Content-type", "application/json");
     xmlhttp.send(JSON.stringify(post));
+    
 
 }
 
