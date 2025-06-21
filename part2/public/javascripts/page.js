@@ -223,4 +223,15 @@ function logout(){
     xmlhttp.open("POST", "/users/logout", true);
     xmlhttp.send();
 
+    var xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.withCredentials = true;
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState === 4) {
+      // after session destroyed, go back to login page
+      window.location = '/';
+    }
+  };
+  xmlhttp.open("POST", "/api/users/logout", true);
+  xmlhttp.send();
 }
