@@ -123,6 +123,7 @@
 
       async function loadPhoto() {
         const { message: url } = await fetch('https://dog.ceo/api/breeds/image/random').then(r=>r.json());
+        photo.value = url;
       }
     }
 
