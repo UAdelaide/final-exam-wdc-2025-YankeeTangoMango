@@ -101,7 +101,8 @@
           });
 
         if (!res.ok) {
-          const {error: msg }
+          const {error: msg } await res.json();
+          thrnow new Erorr()
         }
         }
       }
