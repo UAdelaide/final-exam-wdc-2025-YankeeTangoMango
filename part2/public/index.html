@@ -118,7 +118,7 @@
 
       async function loadDogs() {
         const res= await fetch('/api/dogs');
-        dogs.value = awaot res.json();
+        dogs.value = await res.json();
       }
 
       async function loadPhoto() {
@@ -134,7 +134,7 @@
       return { message, form, error, login, dogs, photo };
     }
   }).mount('#app');
-  
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
