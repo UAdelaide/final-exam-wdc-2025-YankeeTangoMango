@@ -75,7 +75,14 @@
 
     createApp({
       setup() {
-        
+
+        //
+        async function logout() {
+          const res = await fetch('/logout', { method: 'POST' });
+          if (res.ok) {
+            window.location = '/';
+          }
+        }
 
         const form = ref({
           dog_id: '',
