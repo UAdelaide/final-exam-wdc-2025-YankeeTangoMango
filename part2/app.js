@@ -23,4 +23,11 @@ app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
 
 // Export the app instead of listening here
+app.post('/api/users/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) return res.status(500).json({ error: 'Logout failed' });
+    res.clearCookie('connect.sid');
+    res.sendStatus(200);
+  });
+});
 module.exports = app;
